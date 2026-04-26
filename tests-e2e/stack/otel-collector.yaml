@@ -1,0 +1,48 @@
+# OpenTelemetry collector for the e2e stack. Writes traces/metrics to a file on
+# a mounted volume so CI can upload them alongside Playwright traces when a test
+# fails.
+
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+processors:
+  batch:
+    send_batch_size: 512
+    timeout: 1s
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+
+exporters:
+  file:
+    path: /var/log/otel/collector.jsonl
+    rotation:
+      max_megabytes: 32
+      max_backups: 3
+  debug:
+    verbosity: basic
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [file]
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [file]
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [file]

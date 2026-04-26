@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "id": "liq-panel",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 120,
+          "w": 540,
+          "h": 480
+        }
+      },
+      "role": "button",
+      "ariaLabel": "liquid water diagram panel"
+    },
+    {
+      "id": "solid-panel",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 660,
+          "y": 120,
+          "w": 540,
+          "h": 480
+        }
+      },
+      "role": "button",
+      "ariaLabel": "solid ice diagram panel"
+    },
+    {
+      "id": "zoom-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 540,
+          "y": 640,
+          "w": 200,
+          "h": 60
+        }
+      },
+      "role": "button",
+      "ariaLabel": "zoom into molecule button"
+    },
+    {
+      "id": "legend",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 640,
+          "w": 380,
+          "h": 60
+        }
+      },
+      "role": "button",
+      "ariaLabel": "legend strip"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

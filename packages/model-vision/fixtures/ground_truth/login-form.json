@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "id": "title",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 540,
+          "y": 120,
+          "w": 200,
+          "h": 40
+        }
+      },
+      "role": "button",
+      "ariaLabel": "login title"
+    },
+    {
+      "id": "email",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 440,
+          "y": 220,
+          "w": 400,
+          "h": 50
+        }
+      },
+      "role": "textbox",
+      "ariaLabel": "email field"
+    },
+    {
+      "id": "password",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 440,
+          "y": 300,
+          "w": 400,
+          "h": 50
+        }
+      },
+      "role": "textbox",
+      "ariaLabel": "password field"
+    },
+    {
+      "id": "submit",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 540,
+          "y": 400,
+          "w": 200,
+          "h": 60
+        }
+      },
+      "role": "button",
+      "ariaLabel": "sign in button"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

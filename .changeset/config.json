@@ -1,0 +1,18 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [],
+  "linked": [["@sketchapedia/protocol", "@sketchapedia/client-core", "@sketchapedia/client-react"]],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "@sketchapedia/examples-eiffel",
+    "@sketchapedia/examples-ice-water",
+    "@sketchapedia/examples-times-square",
+    "@sketchapedia/examples-dashboard",
+    "@sketchapedia/docs",
+    "@sketchapedia/tests-e2e"
+  ]
+}

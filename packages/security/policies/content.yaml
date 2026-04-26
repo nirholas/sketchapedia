@@ -1,0 +1,32 @@
+# Default content policy for Sketchapedia deployments.
+#
+# This file is read by ContentPolicy.fromYaml / parsePolicyYaml. Operators
+# should copy it into their deployment repo and customise. The subset below
+# is what the loader accepts; do not add YAML features (anchors, flow
+# sequences, multi-line scalars) that the loader rejects on purpose.
+
+# Maximum input length before the policy fails closed. Matches the LLM
+# provider's practical limit after system prompt and tool schemas.
+maxLength: 32768
+
+# Phrases that typically only appear in attempted prompt injection. Matched
+# case-insensitively as substrings.
+injectionMarkers:
+  - "ignore previous instructions"
+  - "ignore the above"
+  - "disregard previous"
+  - "disregard the above"
+  - "you are now"
+  - "system prompt:"
+  - "reveal your system prompt"
+  - "print the system prompt"
+  - "repeat the system prompt"
+  - "new instructions:"
+  - "override the above"
+
+# Terms that universally fail the content policy. Kept intentionally small;
+# tenant-level denylist handles verticalised blocking.
+blockedTerms: []
+
+# Pattern primitives (literal substrings, `*` wildcard allowed).
+blockedPatterns: []

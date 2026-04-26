@@ -1,0 +1,52 @@
+{
+  "name": "sketchapedia-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sketchapedia — Model-as-a-Renderer SDK: generative pixel layer with an invisible semantic DOM overlay.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "nirholas",
+  "homepage": "https://github.com/nirholas/sketchapedia",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirholas/sketchapedia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nirholas/sketchapedia/issues"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "engines": {
+    "node": ">=20.10",
+    "pnpm": ">=10",
+    "bun": ">=1.1"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rimraf node_modules/.cache .turbo",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter='@sketchapedia/*' && changeset publish",
+    "prepare": "lefthook install || true"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@changesets/cli": "^2.27.11",
+    "@types/node": "^22.10.5",
+    "lefthook": "^1.10.1",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.3.5",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8",
+    "@vitest/coverage-v8": "^2.1.8"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@biomejs/biome", "esbuild", "lefthook", "workerd", "sharp"]
+  }
+}

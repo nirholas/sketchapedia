@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "id": "display",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 60,
+          "w": 1120,
+          "h": 120
+        }
+      },
+      "role": "button",
+      "ariaLabel": "calculator display"
+    },
+    {
+      "id": "clear",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 220,
+          "w": 260,
+          "h": 100
+        }
+      },
+      "role": "button",
+      "ariaLabel": "clear button"
+    },
+    {
+      "id": "equals",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 940,
+          "y": 220,
+          "w": 260,
+          "h": 100
+        }
+      },
+      "role": "button",
+      "ariaLabel": "equals button"
+    },
+    {
+      "id": "digits-pad",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 360,
+          "w": 1120,
+          "h": 320
+        }
+      },
+      "role": "button",
+      "ariaLabel": "digit keypad"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

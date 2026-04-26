@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "liq-panel",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 100,
+          "y": 140,
+          "w": 520,
+          "h": 440
+        }
+      },
+      "role": "button",
+      "ariaLabel": "liquid water panel"
+    },
+    {
+      "id": "solid-panel",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 660,
+          "y": 140,
+          "w": 520,
+          "h": 440
+        }
+      },
+      "role": "button",
+      "ariaLabel": "solid ice panel"
+    },
+    {
+      "id": "zoom-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 540,
+          "y": 620,
+          "w": 200,
+          "h": 60
+        }
+      },
+      "role": "button",
+      "ariaLabel": "zoom button"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

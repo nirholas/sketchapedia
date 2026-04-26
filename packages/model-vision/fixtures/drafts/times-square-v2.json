@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "id": "city-view",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 78,
+          "y": 71,
+          "w": 1105,
+          "h": 458
+        }
+      },
+      "role": "button",
+      "ariaLabel": "isometric cityscape"
+    },
+    {
+      "id": "scrubber",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 106,
+          "y": 617,
+          "w": 1039,
+          "h": 45
+        }
+      },
+      "role": "button",
+      "ariaLabel": "year scrubber"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

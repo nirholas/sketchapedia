@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "title",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 57,
+          "y": 56,
+          "w": 791,
+          "h": 38
+        }
+      },
+      "role": "button",
+      "ariaLabel": "chart title"
+    },
+    {
+      "id": "bar-chart",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 104,
+          "y": 130,
+          "w": 539,
+          "h": 464
+        }
+      },
+      "role": "button",
+      "ariaLabel": "bar chart"
+    },
+    {
+      "id": "line-chart",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 669,
+          "y": 158,
+          "w": 532,
+          "h": 472
+        }
+      },
+      "role": "button",
+      "ariaLabel": "line chart"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

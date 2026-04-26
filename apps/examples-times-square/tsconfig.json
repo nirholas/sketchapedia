@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@sketchapedia/client-core": ["../../packages/client-core/src/index.ts"],
+      "@sketchapedia/client-react": ["../../packages/client-react/src/index.ts"],
+      "@sketchapedia/protocol": ["../../packages/protocol/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules", "coverage", "src/**/*.test.ts", "src/**/*.test.tsx"]
+}

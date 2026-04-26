@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "map-canvas",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 60,
+          "y": 60,
+          "w": 900,
+          "h": 600
+        }
+      },
+      "role": "button",
+      "ariaLabel": "map canvas"
+    },
+    {
+      "id": "legend-pn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 1000,
+          "y": 60,
+          "w": 220,
+          "h": 280
+        }
+      },
+      "role": "button",
+      "ariaLabel": "legend panel"
+    },
+    {
+      "id": "filters-pn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 1000,
+          "y": 380,
+          "w": 220,
+          "h": 280
+        }
+      },
+      "role": "button",
+      "ariaLabel": "filters panel"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

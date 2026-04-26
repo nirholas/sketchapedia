@@ -1,0 +1,77 @@
+name = "sketchapedia-edge"
+main = "src/worker.ts"
+compatibility_date = "2025-01-15"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = false
+minify = true
+
+# Global limits — edge worker must stay within tight bounds.
+[limits]
+cpu_ms = 30
+
+[placement]
+mode = "smart"
+
+# ---------------------------------------------------------------------------
+# Env: staging
+# ---------------------------------------------------------------------------
+[env.staging]
+name = "sketchapedia-edge-staging"
+routes = [
+  { pattern = "edge.staging.sketchapedia.com/*", zone_name = "sketchapedia.com" },
+]
+
+[[env.staging.r2_buckets]]
+binding = "R2_ARTIFACTS"
+bucket_name = "sketchapedia-artifacts-staging"
+
+[[env.staging.kv_namespaces]]
+binding = "KV_SIGNED_KEYS"
+id = "REPLACE_WITH_STAGING_SIGNED_KEYS_NS_ID"
+
+[[env.staging.kv_namespaces]]
+binding = "KV_TENANT_CONFIG"
+id = "REPLACE_WITH_STAGING_TENANT_CONFIG_NS_ID"
+
+[[env.staging.queues.producers]]
+binding = "QUEUE_ANALYTICS"
+queue = "sketchapedia-edge-analytics-staging"
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+SIGNATURE_SKEW_MS = "5000"
+KEY_GRACE_COUNT = "2"
+DEFAULT_MAX_AGE_SECONDS = "31536000"
+
+# ---------------------------------------------------------------------------
+# Env: production
+# ---------------------------------------------------------------------------
+[env.production]
+name = "sketchapedia-edge"
+routes = [
+  { pattern = "edge.sketchapedia.com/*", zone_name = "sketchapedia.com" },
+]
+
+[[env.production.r2_buckets]]
+binding = "R2_ARTIFACTS"
+bucket_name = "sketchapedia-artifacts"
+
+[[env.production.kv_namespaces]]
+binding = "KV_SIGNED_KEYS"
+id = "REPLACE_WITH_PROD_SIGNED_KEYS_NS_ID"
+
+[[env.production.kv_namespaces]]
+binding = "KV_TENANT_CONFIG"
+id = "REPLACE_WITH_PROD_TENANT_CONFIG_NS_ID"
+
+[[env.production.queues.producers]]
+binding = "QUEUE_ANALYTICS"
+queue = "sketchapedia-edge-analytics"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+SIGNATURE_SKEW_MS = "5000"
+KEY_GRACE_COUNT = "2"
+DEFAULT_MAX_AGE_SECONDS = "31536000"
+
+# Admin secret set via `wrangler secret put PURGE_ADMIN_SECRET --env <env>`.

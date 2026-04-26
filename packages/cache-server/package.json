@@ -1,0 +1,51 @@
+{
+  "name": "@sketchapedia/cache-server",
+  "version": "0.0.0",
+  "description": "Server-side cache — Redis for metadata, S3/R2 for artifacts.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Sketchapedia contributors",
+  "homepage": "https://github.com/nirholas/sketchapedia/tree/main/packages/cache-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirholas/sketchapedia.git",
+    "directory": "packages/cache-server"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "lint": "biome check src",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist .turbo .typecheck coverage *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@sketchapedia/protocol": "workspace:*",
+    "@sketchapedia/cache-keys": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "rimraf": "catalog:",
+    "@types/node": "catalog:",
+    "tsup": "catalog:"
+  }
+}

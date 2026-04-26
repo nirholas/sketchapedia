@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "id": "nav-rail",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 41,
+          "y": 103,
+          "w": 214,
+          "h": 593
+        }
+      },
+      "role": "button",
+      "ariaLabel": "chapter navigation rail"
+    },
+    {
+      "id": "page",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 326,
+          "y": 88,
+          "w": 767,
+          "h": 590
+        }
+      },
+      "role": "button",
+      "ariaLabel": "document page"
+    },
+    {
+      "id": "toc-toggle",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 83,
+          "y": 48,
+          "w": 77,
+          "h": 23
+        }
+      },
+      "role": "button",
+      "ariaLabel": "toc toggle"
+    },
+    {
+      "id": "search",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 322,
+          "y": 42,
+          "w": 366,
+          "h": 41
+        }
+      },
+      "role": "button",
+      "ariaLabel": "search bar"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

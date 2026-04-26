@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "id": "title",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 540,
+          "y": 136,
+          "w": 209,
+          "h": 37
+        }
+      },
+      "role": "button",
+      "ariaLabel": "login title"
+    },
+    {
+      "id": "email",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 460,
+          "y": 201,
+          "w": 406,
+          "h": 42
+        }
+      },
+      "role": "textbox",
+      "ariaLabel": "email field"
+    },
+    {
+      "id": "password",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 465,
+          "y": 312,
+          "w": 395,
+          "h": 42
+        }
+      },
+      "role": "textbox",
+      "ariaLabel": "password field"
+    },
+    {
+      "id": "submit",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 562,
+          "y": 386,
+          "w": 213,
+          "h": 61
+        }
+      },
+      "role": "button",
+      "ariaLabel": "sign in button"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

@@ -1,0 +1,15 @@
+# Default gateway rate-limit settings. Numbers tuned for a single-tenant
+# reference deployment; production deployments should override.
+#
+# Two buckets per key (per user or per tenant, chosen at wire-up):
+#   overall   — every request draws 1 token; generous.
+#   cacheMiss — only cache-miss intents draw; strict.
+
+overall.ratePerSecond: 10
+overall.capacity: 60
+cacheMiss.ratePerSecond: 1
+cacheMiss.capacity: 10
+
+# Idle bucket eviction, in milliseconds. Buckets untouched for this long and
+# refilled to capacity are dropped to cap memory growth under high key count.
+evictIdleMs: 300000

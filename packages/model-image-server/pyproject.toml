@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sketchapedia-model-image-server"
+version = "0.1.0"
+description = "Sketchapedia image-model inference server (FLUX.1-dev + IP-Adapter + ControlNet)."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11,<3.13"
+authors = [{ name = "Sketchapedia" }]
+keywords = ["sketchapedia", "flux", "diffusers", "inference", "fastapi"]
+
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.6",
+  "httpx>=0.27",
+  "numpy>=1.26",
+  "pillow>=10.2",
+  "pillow-avif-plugin>=1.4",
+  "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+gpu = [
+  "torch>=2.4",
+  "diffusers>=0.30",
+  "transformers>=4.40",
+  "accelerate>=0.30",
+  "safetensors>=0.4",
+  "xformers>=0.0.27; platform_system!='Darwin'",
+  "bitsandbytes>=0.43; platform_system!='Darwin'",
+]
+otel = [
+  "opentelemetry-api>=1.24",
+  "opentelemetry-sdk>=1.24",
+  "opentelemetry-exporter-otlp-proto-grpc>=1.24",
+]
+dev = [
+  "pytest>=8.0",
+  "pytest-asyncio>=0.23",
+  "pytest-httpx>=0.30",
+  "ruff>=0.5",
+]
+
+[project.scripts]
+model-image-server = "model_image_server.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/model_image_server"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+  "gpu: requires a CUDA GPU (run on self-hosted runner only)",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "PL"]
+ignore = ["PLR0913"]

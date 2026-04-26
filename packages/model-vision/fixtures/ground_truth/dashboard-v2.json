@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "todo-list",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 520
+        }
+      },
+      "role": "button",
+      "ariaLabel": "todo list panel"
+    },
+    {
+      "id": "schema-diag",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 460,
+          "y": 120,
+          "w": 540,
+          "h": 360
+        }
+      },
+      "role": "button",
+      "ariaLabel": "schema diagram"
+    },
+    {
+      "id": "denorm-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 460,
+          "y": 500,
+          "w": 260,
+          "h": 50
+        }
+      },
+      "role": "button",
+      "ariaLabel": "denormalize button"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

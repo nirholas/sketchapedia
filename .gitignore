@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+.turbo/
+.typecheck/
+.tsbuildinfo
+*.tsbuildinfo
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+.dev.vars
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Caches
+.cache/
+.eslintcache
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+
+# Test output
+playwright-report/
+test-results/
+
+# Wrangler / Cloudflare
+.wrangler/
+
+# Bun
+.bun/
+
+# Changeset — keep config, ignore local state
+.changeset/*.md
+!.changeset/README.md
+!.changeset/config.json
+
+# Preserve lockfile
+!pnpm-lock.yaml

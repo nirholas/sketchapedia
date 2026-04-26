@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "city-view",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 60,
+          "y": 60,
+          "w": 1160,
+          "h": 480
+        }
+      },
+      "role": "button",
+      "ariaLabel": "isometric cityscape view"
+    },
+    {
+      "id": "scrubber",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 100,
+          "y": 600,
+          "w": 1080,
+          "h": 50
+        }
+      },
+      "role": "button",
+      "ariaLabel": "year scrubber slider"
+    },
+    {
+      "id": "year-label",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 580,
+          "y": 660,
+          "w": 120,
+          "h": 40
+        }
+      },
+      "role": "button",
+      "ariaLabel": "year label"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

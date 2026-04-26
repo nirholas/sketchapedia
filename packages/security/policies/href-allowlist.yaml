@@ -1,0 +1,19 @@
+# Default href allowlist used by validateHref for external intents. Deploys
+# should override with the subset that applies to their tenants — e.g. a
+# calendar tenant may allow specific video-conference hosts, a commerce
+# tenant may allow specific payment processors.
+#
+# Entries are matched case-insensitively. Prefix with `*.` to match any
+# subdomain (but not the apex). Same-origin URLs are always allowed and do
+# not need to appear here.
+
+allowHosts:
+  - "docs.anthropic.com"
+  - "*.sketchapedia.app"
+
+# Permit mailto:/tel: pseudo-schemes. Default off — most apps do not need it
+# and browsers always confirm before handing off to the OS.
+allowMailto: false
+
+# Permit `#fragment` anchors. Default on.
+allowFragments: true

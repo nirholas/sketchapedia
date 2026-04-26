@@ -1,0 +1,43 @@
+{
+  "name": "@sketchapedia/docs",
+  "version": "0.0.0",
+  "description": "Sketchapedia documentation site.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Sketchapedia contributors",
+  "homepage": "https://github.com/nirholas/sketchapedia/tree/main/apps/docs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirholas/sketchapedia.git",
+    "directory": "apps/docs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "test": "vitest run --coverage",
+    "lint": "biome check src",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist .turbo .typecheck coverage *.tsbuildinfo"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "rimraf": "catalog:",
+    "@types/node": "catalog:",
+    "vite": "^6.0.7",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "jsdom": "^26.0.0"
+  }
+}

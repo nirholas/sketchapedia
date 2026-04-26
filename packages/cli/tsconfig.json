@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@sketchapedia/protocol": ["../protocol/src/index.ts"],
+      "@sketchapedia/client-core": ["../client-core/src/index.ts"],
+      "@sketchapedia/cache-keys": ["../cache-keys/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules", "coverage", "src/**/*.test.ts", "src/**/*.test.tsx"]
+}

@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "video",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 80,
+          "w": 1120,
+          "h": 500
+        }
+      },
+      "role": "button",
+      "ariaLabel": "video stage"
+    },
+    {
+      "id": "play-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 600,
+          "y": 600,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "button",
+      "ariaLabel": "play pause button"
+    },
+    {
+      "id": "prog-bar",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 80,
+          "y": 700,
+          "w": 1120,
+          "h": 12
+        }
+      },
+      "role": "button",
+      "ariaLabel": "progress bar"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

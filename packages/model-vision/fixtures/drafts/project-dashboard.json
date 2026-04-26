@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "id": "todo-list",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 61,
+          "y": 81,
+          "w": 388,
+          "h": 544
+        }
+      },
+      "role": "button",
+      "ariaLabel": "todo list panel"
+    },
+    {
+      "id": "schema-diag",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 489,
+          "y": 119,
+          "w": 526,
+          "h": 381
+        }
+      },
+      "role": "button",
+      "ariaLabel": "denormalize schema diagram"
+    },
+    {
+      "id": "denorm-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 495,
+          "y": 507,
+          "w": 249,
+          "h": 61
+        }
+      },
+      "role": "button",
+      "ariaLabel": "denormalize schema button"
+    },
+    {
+      "id": "dep-graph",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 1044,
+          "y": 88,
+          "w": 195,
+          "h": 545
+        }
+      },
+      "role": "button",
+      "ariaLabel": "dependency graph"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

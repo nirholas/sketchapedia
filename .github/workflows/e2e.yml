@@ -1,0 +1,176 @@
+name: E2E
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'packages/**'
+      - 'tests-e2e/**'
+      - '.github/workflows/e2e.yml'
+  push:
+    branches: [main]
+  schedule:
+    # Nightly full profile @ 02:00 UTC — exercises cache-miss, memory, visual.
+    - cron: '0 2 * * *'
+    # Weekend WebKit full profile @ 05:00 UTC on Saturdays.
+    - cron: '0 5 * * 6'
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'Test profile'
+        required: true
+        default: 'light'
+        type: choice
+        options: [light, nightly, weekend]
+
+concurrency:
+  group: e2e-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_TELEMETRY_DISABLED: 1
+  DO_NOT_TRACK: 1
+
+jobs:
+  e2e:
+    name: e2e (${{ matrix.profile }} / ${{ matrix.browser }})
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ matrix.profile == 'nightly' && 60 || 20 }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Light: three browsers, cache-warm.
+          - profile: light
+            browser: chromium
+            schedule-match: pull_request,push,workflow_dispatch
+          - profile: light
+            browser: firefox
+            schedule-match: pull_request,push,workflow_dispatch
+          - profile: light
+            browser: webkit
+            schedule-match: pull_request,push,workflow_dispatch
+          # Nightly: Chromium only, slow + memory + visual.
+          - profile: nightly
+            browser: chromium
+            schedule-match: schedule,workflow_dispatch
+          # Weekend: WebKit full profile.
+          - profile: weekend
+            browser: webkit
+            schedule-match: schedule,workflow_dispatch
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Filter matrix by trigger
+        id: filter
+        env:
+          EVENT: ${{ github.event_name }}
+          CRON: ${{ github.event.schedule }}
+          PROFILE: ${{ matrix.profile }}
+          MATCH: ${{ matrix.schedule-match }}
+        run: |
+          should_run=false
+          if [[ "$EVENT" == "workflow_dispatch" ]]; then
+            [[ "$PROFILE" == "${{ github.event.inputs.profile }}" ]] && should_run=true
+          elif [[ "$EVENT" == "pull_request" || "$EVENT" == "push" ]]; then
+            [[ "$MATCH" == *"$EVENT"* ]] && should_run=true
+          elif [[ "$EVENT" == "schedule" ]]; then
+            # Map cron expressions to profiles.
+            if [[ "$CRON" == "0 2 * * *" && "$PROFILE" == "nightly" ]]; then should_run=true
+            elif [[ "$CRON" == "0 5 * * 6" && "$PROFILE" == "weekend" ]]; then should_run=true
+            fi
+          fi
+          echo "run=$should_run" >> "$GITHUB_OUTPUT"
+
+      - name: Short-circuit if matrix entry is not for this trigger
+        if: steps.filter.outputs.run != 'true'
+        run: |
+          echo "Skipping — this matrix entry is not for the current trigger."
+          exit 0
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Install Playwright browser
+        run: pnpm --filter @sketchapedia/tests-e2e exec playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Bring up stack
+        working-directory: tests-e2e
+        env:
+          MODAL_API_KEY: ${{ secrets.MODAL_API_KEY_TEST }}
+          MODAL_WORKSPACE: ${{ secrets.MODAL_WORKSPACE_TEST }}
+          IMAGE_MODEL_ENDPOINT: ${{ secrets.IMAGE_MODEL_ENDPOINT_TEST }}
+          LAYOUT_MODEL_ENDPOINT: ${{ secrets.LAYOUT_MODEL_ENDPOINT_TEST }}
+          E2E_JWT_PUBLIC_KEY_PEM: ${{ secrets.E2E_JWT_PUBLIC_KEY_PEM }}
+          E2E_JWT_PRIVATE_KEY_PEM: ${{ secrets.E2E_JWT_PRIVATE_KEY_PEM }}
+        run: pnpm stack:up
+
+      - name: Seed cache
+        working-directory: tests-e2e
+        run: pnpm stack:seed
+
+      - name: Start reference apps
+        run: |
+          pnpm --filter examples-eiffel build
+          pnpm --filter examples-ice-water build
+          pnpm --filter examples-times-square build
+          pnpm --filter examples-dashboard build
+          pnpm --filter examples-eiffel start -- -p 3001 &
+          pnpm --filter examples-ice-water start -- -p 3002 &
+          pnpm --filter examples-times-square start -- -p 3003 &
+          pnpm --filter examples-dashboard start -- -p 3004 &
+          npx --yes wait-on http://localhost:3001 http://localhost:3002 http://localhost:3003 http://localhost:3004 --timeout 120000
+
+      - name: Run Playwright (${{ matrix.profile }}, ${{ matrix.browser }})
+        working-directory: tests-e2e
+        env:
+          E2E_PROFILE: ${{ matrix.profile }}
+          E2E_JWT_PRIVATE_KEY_PEM: ${{ secrets.E2E_JWT_PRIVATE_KEY_PEM }}
+          E2E_JWT_PUBLIC_KEY_PEM: ${{ secrets.E2E_JWT_PUBLIC_KEY_PEM }}
+          E2E_CACHE_ADMIN_TOKEN: ${{ secrets.E2E_CACHE_ADMIN_TOKEN }}
+        run: pnpm exec playwright test --project=${{ matrix.browser }}
+
+      - name: Collect stack logs on failure
+        if: failure()
+        working-directory: tests-e2e
+        run: pnpm stack:logs > stack.log || true
+
+      - name: Upload Playwright artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-${{ matrix.profile }}-${{ matrix.browser }}-${{ github.run_attempt }}
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            tests-e2e/playwright-report/**
+            tests-e2e/test-results/**
+            tests-e2e/stack.log
+            tests-e2e/stack/.collector-output/**
+
+      - name: Tear down stack
+        if: always()
+        working-directory: tests-e2e
+        run: pnpm stack:down

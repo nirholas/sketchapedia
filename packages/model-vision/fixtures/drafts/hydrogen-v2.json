@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "id": "h-bond",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 357,
+          "y": 233,
+          "w": 612,
+          "h": 311
+        }
+      },
+      "role": "button",
+      "ariaLabel": "hydrogen geometry"
+    },
+    {
+      "id": "explain-tb",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 110,
+          "y": 569,
+          "w": 1027,
+          "h": 68
+        }
+      },
+      "role": "button",
+      "ariaLabel": "explanation textbox"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

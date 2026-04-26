@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Flipbook — A generative visual internet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:            #f7f1e3;
+      --surface:       #fffcf6;
+      --surface-strong:#fffdf8;
+      --panel:         #ebe1d1;
+      --browser-bg:    #e8dfd1;
+      --text:          #171411;
+      --text-muted:    rgba(23,20,17,.52);
+      --line:          #171411;
+      --shadow:        rgba(83,70,46,.12);
+      --accent:        #bf984f;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      overflow: hidden auto;
+      background: var(--bg);
+      font-family: 'Comic Neue', 'Avenir Next', 'Helvetica Neue', sans-serif;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    /* ── pill ───────────────────────────────────────────────── */
+    .next-page-pill {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 0.7rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.38rem 1rem;
+      background: var(--bg);
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .18s;
+      box-shadow: 0 4px 14px var(--shadow);
+    }
+    .next-page-pill:hover { background: #fffaf1; }
+
+    /* ── shell ──────────────────────────────────────────────── */
+    .page-shell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: calc(env(safe-area-inset-top, 0px) + 3.6rem) 0.8rem 3rem;
+      min-height: 100vh;
+    }
+
+    /* ── browser window ─────────────────────────────────────── */
+    .browser-window {
+      width: 100%;
+      max-width: 1180px;
+      border: 2px solid var(--line);
+      border-radius: 2rem;
+      background: var(--browser-bg);
+      box-shadow: 0 22px 48px var(--shadow);
+      overflow: hidden;
+    }
+
+    .browser-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 0.75rem;
+      border-bottom: 2px solid var(--line);
+      background: var(--surface);
+    }
+
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 2px solid var(--line);
+      border-radius: 0.9rem;
+      background: var(--bg);
+      cursor: pointer;
+      transition: background .18s;
+      font-size: 1rem;
+      flex-shrink: 0;
+      color: var(--text);
+    }
+    .btn-icon:hover { background: var(--panel); }
+    .btn-icon:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+
+    .address-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      height: 2.75rem;
+      padding: 0 0.8rem;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: var(--bg);
+      min-width: 0;
+    }
+    .address-icon { font-size: 0.8rem; opacity: 0.45; flex-shrink: 0; }
+    .address-bar input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      min-width: 0;
+    }
+    .address-bar input::placeholder { color: var(--text-muted); }
+
+    .window-controls { display: flex; gap: 0.35rem; flex-shrink: 0; }
+    .wc { width: 0.85rem; height: 0.85rem; border-radius: 50%; border: 1.5px solid var(--line); background: var(--bg); }
+
+    /* ── result frame ───────────────────────────────────────── */
+    .result-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--browser-bg);
+      cursor: crosshair;
+      overflow: hidden;
+    }
+
+    .result-frame canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── loading overlay ────────────────────────────────────── */
+    .result-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--browser-bg);
+      z-index: 10;
+      transition: opacity .4s;
+    }
+    .result-loading.hidden { opacity: 0; pointer-events: none; }
+    .loading-text { font-size: 0.82rem; font-weight: 700; color: var(--text-muted); }
+    .loading-track {
+      width: 11rem;
+      height: 2px;
+      background: rgba(23,20,17,.15);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    .loading-fill { height: 100%; width: 0%; background: var(--accent); transition: width .2s; }
+
+    /* ── stream toggle ──────────────────────────────────────── */
+    .stream-toggle {
+      position: absolute;
+      bottom: 0.85rem;
+      right: 0.85rem;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      height: 2.125rem;
+      width: 2.125rem;
+      padding: 0 0.5rem;
+      border: 2px solid var(--line);
+      border-radius: 0.9rem;
+      background: var(--bg);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: width .22s, background .18s, border-color .18s, color .18s;
+    }
+    .stream-toggle:hover { width: 14.5rem; background: var(--surface-strong); }
+    .stream-toggle.generating {
+      width: 14.5rem;
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      cursor: default;
+    }
+    .st-icon { font-size: 0.95rem; flex-shrink: 0; }
+    .st-label { opacity: 0; transition: opacity .18s; pointer-events: none; }
+    .stream-toggle:hover .st-label,
+    .stream-toggle.generating .st-label { opacity: 1; }
+    .st-progress {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,.35);
+      border-radius: 1px;
+      overflow: hidden;
+      display: none;
+    }
+    .stream-toggle.generating .st-progress { display: block; }
+    .st-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #fff;
+      animation: gen-progress 2.5s ease-in-out infinite;
+    }
+    @keyframes gen-progress {
+      0%   { width: 0%; opacity: 1; }
+      60%  { width: 85%; opacity: 1; }
+      100% { width: 100%; opacity: 0; }
+    }
+
+    /* ── draft suggestion cards ─────────────────────────────── */
+    .draft-card {
+      position: absolute;
+      z-index: 6;
+      background: rgba(255,253,248,.97);
+      border: 1.5px solid rgba(23,20,17,.22);
+      border-radius: 0.95rem;
+      padding: 0.6rem 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+      max-width: 12.1rem;
+      transition: background .18s, transform .22s, opacity .22s;
+      animation: card-in .22s ease-out;
+    }
+    .draft-card:hover { background: #fffaf1; transform: translateY(-1px); }
+    .draft-card .dc-text { line-height: 1.38; flex: 1; }
+    .draft-card .dc-dismiss {
+      opacity: .35;
+      font-size: 0.72rem;
+      line-height: 1;
+      flex-shrink: 0;
+      cursor: pointer;
+      padding: 0 0.1rem;
+      margin-top: 0.05rem;
+    }
+    .draft-card .dc-dismiss:hover { opacity: .8; }
+    .draft-card.removing { opacity: 0; transform: scale(.9); pointer-events: none; }
+    @keyframes card-in {
+      from { opacity: 0; transform: scale(.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── tap marker + ripple ────────────────────────────────── */
+    .tap-marker {
+      position: absolute;
+      width: 1.625rem;
+      height: 1.625rem;
+      border: 3px solid var(--line);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: tap-fade .6s ease-out forwards;
+    }
+    .tap-ripple {
+      position: absolute;
+      width: 3.75rem;
+      height: 3.75rem;
+      border-radius: 50%;
+      background: rgba(23,20,17,.1);
+      transform: translate(-50%, -50%) scale(0);
+      pointer-events: none;
+      animation: ripple .55s ease-out forwards;
+    }
+    @keyframes tap-fade {
+      0%   { opacity: 1; transform: translate(-50%,-50%) scale(.5); }
+      100% { opacity: 0; transform: translate(-50%,-50%) scale(1.5); }
+    }
+    @keyframes ripple {
+      0%   { transform: translate(-50%,-50%) scale(0); opacity: 1; }
+      100% { transform: translate(-50%,-50%) scale(6); opacity: 0; }
+    }
+
+    /* ── quality row ────────────────────────────────────────── */
+    .quality-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .quality-toggle {
+      display: flex;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .quality-btn {
+      padding: 0.28rem 0.85rem;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: background .18s, color .18s;
+      border-radius: 999px;
+    }
+    .quality-btn.active { background: var(--text); color: var(--bg); }
+
+    /* ── article copy ───────────────────────────────────────── */
+    .stage-copy {
+      width: 100%;
+      max-width: 64rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6rem;
+      padding: clamp(2.2rem, 6vw, 4.2rem) 0;
+    }
+    .copy-title {
+      font-size: 30pt;
+      font-weight: 700;
+      line-height: 1.05;
+      text-align: center;
+    }
+    .copy-byline {
+      font-size: 15pt;
+      font-weight: 700;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    .copy-byline a { color: inherit; }
+    .copy-section {
+      width: 100%;
+      max-width: 48rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .copy-section h2 {
+      font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+      font-weight: 700;
+    }
+    .copy-section p {
+      font-size: 15pt;
+      line-height: 1.38;
+    }
+
+    /* ── responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .page-shell { padding-left: 0.9rem; padding-right: 0.9rem; }
+      .browser-window { border-radius: 1.65rem; }
+      .browser-toolbar { flex-wrap: wrap; }
+      .address-bar { min-width: 100%; order: 3; }
+    }
+    @media (max-width: 640px) {
+      .page-shell { padding-left: 0.72rem; padding-right: 0.72rem; }
+      .browser-window { border-radius: 1.35rem; }
+      .address-bar input { font-size: 16px; }
+      .btn-home { display: none; }
+      .draft-card { max-width: 10.9rem; }
+      .copy-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+      .copy-section p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="next-page-pill" id="pill" role="button" tabindex="0" aria-label="Next page ready">
+    ✦ The next page is ready
+  </div>
+
+  <div class="page-shell">
+
+    <!-- browser window -->
+    <div class="browser-window">
+
+      <div class="browser-toolbar">
+        <button class="btn-icon btn-home" title="Home" aria-label="Home">⌂</button>
+        <button class="btn-icon" title="Back" aria-label="Back">‹</button>
+        <button class="btn-icon" title="Forward" aria-label="Forward">›</button>
+        <div class="address-bar">
+          <span class="address-icon">🔒</span>
+          <input type="text" value="flipbook.page / powder-lines-2024" readonly aria-label="Address">
+        </div>
+        <button class="btn-icon" title="Share" aria-label="Share">↑</button>
+        <div class="window-controls" aria-hidden="true">
+          <div class="wc" style="background:#e8dfd1"></div>
+          <div class="wc" style="background:#e8dfd1"></div>
+          <div class="wc" style="background:#e8dfd1"></div>
+        </div>
+      </div>
+
+      <div class="result-frame" id="result-frame">
+
+        <canvas id="frame-canvas"></canvas>
+
+        <!-- loading overlay -->
+        <div class="result-loading" id="result-loading">
+          <div class="loading-text">Loading frames…</div>
+          <div class="loading-track"><div class="loading-fill" id="loading-fill"></div></div>
+        </div>
+
+        <!-- draft suggestion cards -->
+        <div class="draft-card" id="card-a" style="top:1rem;left:1rem">
+          <span>✦</span>
+          <span class="dc-text">Add slow-motion powder spray at turn 3</span>
+          <span class="dc-dismiss" data-target="card-a">✕</span>
+        </div>
+        <div class="draft-card" id="card-b" style="bottom:3.75rem;left:1rem">
+          <span>◈</span>
+          <span class="dc-text">Switch to golden-hour lighting</span>
+          <span class="dc-dismiss" data-target="card-b">✕</span>
+        </div>
+
+        <!-- stream toggle -->
+        <button class="stream-toggle" id="stream-toggle" aria-label="Generate next frame">
+          <span class="st-icon">⚡</span>
+          <span class="st-label">Generating next frame…</span>
+          <div class="st-progress"><div class="st-progress-fill"></div></div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- quality toggle -->
+    <div class="quality-row">
+      <span>Draft</span>
+      <div class="quality-toggle" role="group" aria-label="Quality">
+        <button class="quality-btn active" id="q-standard" aria-pressed="true">Standard</button>
+        <button class="quality-btn" id="q-draft" aria-pressed="false">Draft</button>
+      </div>
+      <span>Full quality</span>
+    </div>
+
+    <!-- article -->
+    <div class="stage-copy">
+      <h1 class="copy-title">Powder Lines, 2024</h1>
+      <p class="copy-byline">
+        By <a href="#">nirholas</a> &nbsp;·&nbsp; Zermatt, January
+      </p>
+
+      <div class="copy-section">
+        <h2>The descent</h2>
+        <p>
+          Above the treeline the slope opens into a white canvas unmarked by tracks.
+          Each turn throws a plume that hangs in the cold air for a fraction of a second
+          before the wind erases it. The mountain keeps no memory of the line you drew.
+        </p>
+        <p>
+          The sequence below was captured at 120 fps and rendered frame-by-frame by the
+          Sketchapedia generative layer. Each keyframe is content-addressed and cached at
+          the edge — on repeat visits the CDN serves the whole run in under 200 ms.
+        </p>
+      </div>
+
+      <div class="copy-section">
+        <h2>How it works</h2>
+        <p>
+          A layout spec and hitmap are emitted by the LLM, then passed to the image model
+          with ControlNet reference conditioning. The canvas displays the keyframe sequence
+          while an invisible DOM overlay — real <code>&lt;input&gt;</code>,
+          <code>&lt;button&gt;</code>, and ARIA roles — mirrors the hitmap so that clicks,
+          keyboard navigation, and screen readers all land on the right target.
+        </p>
+        <p>
+          The trickiest problem is hitmap-to-pixel alignment. If the model draws the
+          next-run button at (312, 480) but the hitmap says (298, 475), clicks misfire.
+          The current approach enforces layout-first ControlNet constraints and runs a
+          Florence-2 vision post-pass to correct drift before the frame is committed to
+          the cache.
+        </p>
+      </div>
+
+      <div class="copy-section">
+        <h2>Scroll to scrub</h2>
+        <p>
+          The original sketchapedia.js demo is still accessible at
+          <a href="legacy.html">legacy.html</a>. It shows the same snowboard footage
+          driven purely by scroll position — the ancestor of what you see here.
+        </p>
+      </div>
+    </div>
+
+  </div><!-- /page-shell -->
+
+  <script>
+    // ── frame player ─────────────────────────────────────────────────────────
+    const canvas  = document.getElementById('frame-canvas');
+    const ctx     = canvas.getContext('2d');
+    const loading = document.getElementById('result-loading');
+    const fill    = document.getElementById('loading-fill');
+    const frame   = document.getElementById('result-frame');
+
+    const TOTAL = 42;
+    const FPS   = 18;
+    const frames = [];
+    let   loaded = 0;
+    let   current = 0;
+    let   playing = false;
+
+    function pad(n, width) {
+      return String(n).padStart(width, '0');
+    }
+
+    function loadFrames() {
+      for (let i = 1; i <= TOTAL; i++) {
+        const img = new Image();
+        const src = `img/snowboard/${pad(i, 3)}.jpg`;
+        img.onload = () => {
+          frames[i - 1] = img;
+          loaded++;
+          fill.style.width = Math.round(loaded / TOTAL * 100) + '%';
+          if (loaded === TOTAL && !playing) startPlayback();
+        };
+        img.onerror = () => { loaded++; };
+        img.src = src;
+      }
+    }
+
+    function drawFrame(img) {
+      const cw = canvas.offsetWidth;
+      const ch = canvas.offsetHeight;
+      if (canvas.width !== cw)  canvas.width  = cw;
+      if (canvas.height !== ch) canvas.height = ch;
+      if (!img || cw === 0) return;
+
+      // cover fit
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+      const sw = img.naturalWidth * scale;
+      const sh = img.naturalHeight * scale;
+      ctx.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+    }
+
+    function startPlayback() {
+      playing = true;
+      loading.classList.add('hidden');
+      setInterval(() => {
+        const img = frames[current];
+        if (img) drawFrame(img);
+        current = (current + 1) % TOTAL;
+      }, 1000 / FPS);
+    }
+
+    new ResizeObserver(() => {
+      const img = frames[current];
+      if (img) drawFrame(img);
+    }).observe(frame);
+
+    loadFrames();
+
+    // ── interactions ─────────────────────────────────────────────────────────
+
+    // tap marker + ripple
+    frame.addEventListener('click', (e) => {
+      const rect  = frame.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      ['tap-marker', 'tap-ripple'].forEach(cls => {
+        const el = document.createElement('div');
+        el.className = cls;
+        el.style.left = x + 'px';
+        el.style.top  = y + 'px';
+        frame.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      });
+    });
+
+    // draft card dismiss
+    document.querySelectorAll('.dc-dismiss').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = document.getElementById(btn.dataset.target);
+        card.classList.add('removing');
+        card.addEventListener('transitionend', () => card.remove(), { once: true });
+      });
+    });
+
+    // stream toggle — simulate a generation cycle
+    const toggle = document.getElementById('stream-toggle');
+    let generating = false;
+    toggle.addEventListener('click', () => {
+      if (generating) return;
+      generating = true;
+      toggle.classList.add('generating');
+      toggle.querySelector('.st-label').textContent = 'Generating next frame…';
+      setTimeout(() => {
+        toggle.classList.remove('generating');
+        toggle.querySelector('.st-label').textContent = 'Generate';
+        generating = false;
+      }, 3200);
+    });
+
+    // quality toggle
+    document.getElementById('q-standard').addEventListener('click', function() {
+      this.classList.add('active'); this.setAttribute('aria-pressed', 'true');
+      const draft = document.getElementById('q-draft');
+      draft.classList.remove('active'); draft.setAttribute('aria-pressed', 'false');
+    });
+    document.getElementById('q-draft').addEventListener('click', function() {
+      this.classList.add('active'); this.setAttribute('aria-pressed', 'true');
+      const std = document.getElementById('q-standard');
+      std.classList.remove('active'); std.setAttribute('aria-pressed', 'false');
+    });
+
+    // pill — scroll to article
+    document.getElementById('pill').addEventListener('click', () => {
+      document.querySelector('.stage-copy').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+{
+  "items": [
+    {
+      "id": "tool-0",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 60,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 0"
+    },
+    {
+      "id": "tool-1",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 160,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 1"
+    },
+    {
+      "id": "tool-2",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 260,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 2"
+    },
+    {
+      "id": "tool-3",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 360,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 3"
+    },
+    {
+      "id": "tool-4",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 460,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 4"
+    },
+    {
+      "id": "tool-5",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 560,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 5"
+    },
+    {
+      "id": "tool-6",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 660,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 6"
+    },
+    {
+      "id": "tool-7",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 760,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 7"
+    },
+    {
+      "id": "tool-8",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 860,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 8"
+    },
+    {
+      "id": "tool-9",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 960,
+          "y": 60,
+          "w": 80,
+          "h": 80
+        }
+      },
+      "role": "menuitem",
+      "ariaLabel": "toolbar item 9"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

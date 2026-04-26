@@ -1,0 +1,23 @@
+# Bun runtime + test configuration for @sketchapedia/server-gateway.
+# See https://bun.sh/docs/runtime/bunfig
+
+[install]
+# Use the workspace store — no lockfile churn.
+frozenLockfile = true
+production = false
+
+[install.scopes]
+"@sketchapedia" = { url = "workspace:" }
+
+[test]
+# Integration tests need Redis + stub orchestrator boot time.
+timeout = 60000
+# Preload telemetry in NoOp mode so instrumentation calls don't throw under test.
+preload = ["./test/preload.ts"]
+coverage = false
+coverageThreshold = 0.85
+
+[run]
+# Ensure deterministic JIT behavior and disable silent --hot in prod boot.
+hot = false
+silent = false

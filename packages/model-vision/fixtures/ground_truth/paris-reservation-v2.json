@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "res-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 500,
+          "y": 560,
+          "w": 280,
+          "h": 70
+        }
+      },
+      "role": "button",
+      "ariaLabel": "reserve table button"
+    },
+    {
+      "id": "date-pkr",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 220,
+          "y": 400,
+          "w": 360,
+          "h": 50
+        }
+      },
+      "role": "button",
+      "ariaLabel": "date picker"
+    },
+    {
+      "id": "menu-img",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 860,
+          "y": 120,
+          "w": 340,
+          "h": 220
+        }
+      },
+      "role": "button",
+      "ariaLabel": "menu cover image"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

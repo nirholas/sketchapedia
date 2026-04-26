@@ -1,0 +1,41 @@
+{
+  "name": "@sketchapedia/edge-worker",
+  "version": "0.0.0",
+  "description": "Cloudflare Worker — edge cache + CDN layer for scene artifacts.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Sketchapedia contributors",
+  "homepage": "https://github.com/nirholas/sketchapedia/tree/main/packages/edge-worker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirholas/sketchapedia.git",
+    "directory": "packages/edge-worker"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run --coverage",
+    "lint": "biome check src",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist .turbo .typecheck coverage .wrangler *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@sketchapedia/protocol": "workspace:*",
+    "@sketchapedia/cache-keys": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "rimraf": "catalog:",
+    "@types/node": "catalog:",
+    "tsup": "catalog:",
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "wrangler": "^3.99.0"
+  }
+}

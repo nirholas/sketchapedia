@@ -1,0 +1,14 @@
+# Example tenant denylist. Each tenant gets its own file at runtime; this one
+# ships as a template showing the shape the DenylistIndex loader expects.
+
+tenant: example-tenant
+
+# Exact-match intents. Case-insensitive.
+intents:
+  - "delete account"
+  - "transfer funds"
+
+# Substring hits against the style guide. Case-insensitive.
+styleSubstrings:
+  - "nsfw"
+  - "violence"

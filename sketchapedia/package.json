@@ -1,0 +1,31 @@
+{
+  "name": "sketchapedia",
+  "version": "1.6.0",
+  "description": "sketchapedia is a tiny library for playback of relatively short videos on canvas elements.",
+  "main": "sketchapedia.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gka/sketchapedia.git"
+  },
+  "keywords": [
+    "canvas",
+    "video",
+    "gif"
+  ],
+  "author": "Gregor Aisch",
+  "contributors" : [{
+      "name" : "Gregor Aisch",
+      "web" : "http://driven-by-data.net"
+    },{
+      "name" : "Moritz Klack",
+      "web" : "http://moritzklack.com"
+  }],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gka/sketchapedia/issues"
+  },
+  "homepage": "https://github.com/gka/sketchapedia"
+}

@@ -1,0 +1,67 @@
+{
+  "name": "@sketchapedia/model-llm",
+  "version": "0.0.0",
+  "description": "Layout + hitmap generator — Anthropic Claude structured tool use, pluggable.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Sketchapedia contributors",
+  "homepage": "https://github.com/nirholas/sketchapedia/tree/main/packages/model-llm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirholas/sketchapedia.git",
+    "directory": "packages/model-llm"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "lint": "biome check src",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist .turbo .typecheck coverage *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@sketchapedia/protocol": "workspace:*",
+    "@anthropic-ai/sdk": "^0.90.0",
+    "zod": "^4.3.6",
+    "zod-to-json-schema": "^3.25.2"
+  },
+  "peerDependencies": {
+    "@google/genai": "^1.50.1",
+    "openai": "^6.34.0"
+  },
+  "peerDependenciesMeta": {
+    "@google/genai": {
+      "optional": true
+    },
+    "openai": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "rimraf": "catalog:",
+    "@types/node": "catalog:",
+    "tsup": "catalog:",
+    "@google/genai": "^1.50.1",
+    "openai": "^6.34.0"
+  }
+}

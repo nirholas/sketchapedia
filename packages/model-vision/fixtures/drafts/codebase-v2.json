@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "module-1",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 86,
+          "y": 75,
+          "w": 340,
+          "h": 247
+        }
+      },
+      "role": "button",
+      "ariaLabel": "auth module"
+    },
+    {
+      "id": "module-2",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 502,
+          "y": 108,
+          "w": 340,
+          "h": 274
+        }
+      },
+      "role": "button",
+      "ariaLabel": "api module"
+    },
+    {
+      "id": "module-3",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 845,
+          "y": 107,
+          "w": 329,
+          "h": 271
+        }
+      },
+      "role": "button",
+      "ariaLabel": "db module"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

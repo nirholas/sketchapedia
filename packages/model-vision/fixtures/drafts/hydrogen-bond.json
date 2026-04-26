@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "h-bond",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 328,
+          "y": 213,
+          "w": 638,
+          "h": 333
+        }
+      },
+      "role": "button",
+      "ariaLabel": "hydrogen bond geometry diagram"
+    },
+    {
+      "id": "explain-tb",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 89,
+          "y": 524,
+          "w": 1069,
+          "h": 73
+        }
+      },
+      "role": "button",
+      "ariaLabel": "expansion explanation textbox"
+    },
+    {
+      "id": "next-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 1105,
+          "y": 43,
+          "w": 135,
+          "h": 53
+        }
+      },
+      "role": "button",
+      "ariaLabel": "next chart button"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

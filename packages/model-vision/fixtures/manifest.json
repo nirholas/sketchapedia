@@ -1,0 +1,122 @@
+[
+  {
+    "name": "paris-reservation",
+    "keyframe": "keyframes/paris-reservation.png",
+    "draft": "drafts/paris-reservation.json",
+    "ground_truth": "ground_truth/paris-reservation.json"
+  },
+  {
+    "name": "ice-water-diagram",
+    "keyframe": "keyframes/ice-water-diagram.png",
+    "draft": "drafts/ice-water-diagram.json",
+    "ground_truth": "ground_truth/ice-water-diagram.json"
+  },
+  {
+    "name": "hydrogen-bond",
+    "keyframe": "keyframes/hydrogen-bond.png",
+    "draft": "drafts/hydrogen-bond.json",
+    "ground_truth": "ground_truth/hydrogen-bond.json"
+  },
+  {
+    "name": "times-square",
+    "keyframe": "keyframes/times-square.png",
+    "draft": "drafts/times-square.json",
+    "ground_truth": "ground_truth/times-square.json"
+  },
+  {
+    "name": "project-dashboard",
+    "keyframe": "keyframes/project-dashboard.png",
+    "draft": "drafts/project-dashboard.json",
+    "ground_truth": "ground_truth/project-dashboard.json"
+  },
+  {
+    "name": "codebase-arch",
+    "keyframe": "keyframes/codebase-arch.png",
+    "draft": "drafts/codebase-arch.json",
+    "ground_truth": "ground_truth/codebase-arch.json"
+  },
+  {
+    "name": "paris-reservation-v2",
+    "keyframe": "keyframes/paris-reservation-v2.png",
+    "draft": "drafts/paris-reservation-v2.json",
+    "ground_truth": "ground_truth/paris-reservation-v2.json"
+  },
+  {
+    "name": "ice-water-v2",
+    "keyframe": "keyframes/ice-water-v2.png",
+    "draft": "drafts/ice-water-v2.json",
+    "ground_truth": "ground_truth/ice-water-v2.json"
+  },
+  {
+    "name": "dashboard-v2",
+    "keyframe": "keyframes/dashboard-v2.png",
+    "draft": "drafts/dashboard-v2.json",
+    "ground_truth": "ground_truth/dashboard-v2.json"
+  },
+  {
+    "name": "codebase-v2",
+    "keyframe": "keyframes/codebase-v2.png",
+    "draft": "drafts/codebase-v2.json",
+    "ground_truth": "ground_truth/codebase-v2.json"
+  },
+  {
+    "name": "hydrogen-v2",
+    "keyframe": "keyframes/hydrogen-v2.png",
+    "draft": "drafts/hydrogen-v2.json",
+    "ground_truth": "ground_truth/hydrogen-v2.json"
+  },
+  {
+    "name": "times-square-v2",
+    "keyframe": "keyframes/times-square-v2.png",
+    "draft": "drafts/times-square-v2.json",
+    "ground_truth": "ground_truth/times-square-v2.json"
+  },
+  {
+    "name": "dense-grid",
+    "keyframe": "keyframes/dense-grid.png",
+    "draft": "drafts/dense-grid.json",
+    "ground_truth": "ground_truth/dense-grid.json"
+  },
+  {
+    "name": "toolbar-strip",
+    "keyframe": "keyframes/toolbar-strip.png",
+    "draft": "drafts/toolbar-strip.json",
+    "ground_truth": "ground_truth/toolbar-strip.json"
+  },
+  {
+    "name": "media-player",
+    "keyframe": "keyframes/media-player.png",
+    "draft": "drafts/media-player.json",
+    "ground_truth": "ground_truth/media-player.json"
+  },
+  {
+    "name": "doc-reader",
+    "keyframe": "keyframes/doc-reader.png",
+    "draft": "drafts/doc-reader.json",
+    "ground_truth": "ground_truth/doc-reader.json"
+  },
+  {
+    "name": "calculator",
+    "keyframe": "keyframes/calculator.png",
+    "draft": "drafts/calculator.json",
+    "ground_truth": "ground_truth/calculator.json"
+  },
+  {
+    "name": "map-explorer",
+    "keyframe": "keyframes/map-explorer.png",
+    "draft": "drafts/map-explorer.json",
+    "ground_truth": "ground_truth/map-explorer.json"
+  },
+  {
+    "name": "login-form",
+    "keyframe": "keyframes/login-form.png",
+    "draft": "drafts/login-form.json",
+    "ground_truth": "ground_truth/login-form.json"
+  },
+  {
+    "name": "chart-page",
+    "keyframe": "keyframes/chart-page.png",
+    "draft": "drafts/chart-page.json",
+    "ground_truth": "ground_truth/chart-page.json"
+  }
+]

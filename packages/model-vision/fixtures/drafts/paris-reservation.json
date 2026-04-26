@@ -1,0 +1,79 @@
+{
+  "items": [
+    {
+      "id": "res-btn",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 504,
+          "y": 542,
+          "w": 326,
+          "h": 89
+        }
+      },
+      "role": "button",
+      "ariaLabel": "blue reserve button"
+    },
+    {
+      "id": "date-pkr",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 181,
+          "y": 380,
+          "w": 376,
+          "h": 47
+        }
+      },
+      "role": "button",
+      "ariaLabel": "date picker"
+    },
+    {
+      "id": "party-size",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 624,
+          "y": 365,
+          "w": 202,
+          "h": 58
+        }
+      },
+      "role": "button",
+      "ariaLabel": "party size selector"
+    },
+    {
+      "id": "menu-img",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 863,
+          "y": 89,
+          "w": 326,
+          "h": 232
+        }
+      },
+      "role": "button",
+      "ariaLabel": "menu cover image"
+    },
+    {
+      "id": "title-bar",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 58,
+          "y": 78,
+          "w": 1160,
+          "h": 31
+        }
+      },
+      "role": "button",
+      "ariaLabel": "restaurant title bar"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}

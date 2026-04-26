@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "id": "module-1",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 85,
+          "y": 105,
+          "w": 373,
+          "h": 277
+        }
+      },
+      "role": "button",
+      "ariaLabel": "auth module box"
+    },
+    {
+      "id": "module-2",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 489,
+          "y": 81,
+          "w": 373,
+          "h": 295
+        }
+      },
+      "role": "button",
+      "ariaLabel": "api module box"
+    },
+    {
+      "id": "module-3",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 891,
+          "y": 95,
+          "w": 314,
+          "h": 276
+        }
+      },
+      "role": "button",
+      "ariaLabel": "db module box"
+    },
+    {
+      "id": "legend-bar",
+      "region": {
+        "kind": "bbox",
+        "bbox": {
+          "x": 90,
+          "y": 637,
+          "w": 1110,
+          "h": 60
+        }
+      },
+      "role": "button",
+      "ariaLabel": "module legend bar"
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinateSpace": "keyframe"
+}
