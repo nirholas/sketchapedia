@@ -4,7 +4,7 @@
   "private": true,
   "description": "Sketchapedia — Model-as-a-Renderer SDK: generative pixel layer with an invisible semantic DOM overlay.",
   "type": "module",
-  "license": "Apache-2.0",
+  "license": "SEE LICENSE IN LICENSE",
   "author": "nirholas",
   "homepage": "https://github.com/nirholas/sketchapedia",
   "repository": {

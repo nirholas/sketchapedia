@@ -85,4 +85,4 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md). Every change must keep `pnpm lint`, 
 
 ## License
 
-Apache-2.0 — see [`LICENSE`](./LICENSE).
+All rights reserved. See [LICENSE](LICENSE).
