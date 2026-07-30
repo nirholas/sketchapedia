@@ -2,7 +2,7 @@
 
 Playwright end-to-end suite exercising the client SDK against reference apps.
 
-**Populated by prompt 25.** This package is part of the Sketchapedia [monorepo](../../README.md); the canonical build spec lives at [`prompts/25-*.md`](../../prompts/).
+**Populated by prompt 25.** This package is part of the Sketchapedia [monorepo](../README.md); the canonical build spec lives at [`prompts/25-e2e-tests.md`](../prompts/25-e2e-tests.md).
 
 ## Usage
 
@@ -19,4 +19,4 @@ import { testsE2ePackageName } from '@sketchapedia/tests-e2e';
 - `pnpm lint` — Biome.
 - `pnpm typecheck` — `tsc --noEmit`.
 
-See [`CONTRIBUTING.md`](../../CONTRIBUTING.md) for workflow details.
+See [`CONTRIBUTING.md`](../CONTRIBUTING.md) for workflow details.

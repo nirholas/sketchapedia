@@ -5,11 +5,11 @@
   "type": "module",
   "license": "Apache-2.0",
   "author": "Sketchapedia contributors",
-  "homepage": "https://github.com/nirholas/sketchapedia/tree/main/root/tests-e2e",
+  "homepage": "https://github.com/nirholas/sketchapedia/tree/main/tests-e2e",
   "repository": {
     "type": "git",
     "url": "https://github.com/nirholas/sketchapedia.git",
-    "directory": "root/tests-e2e"
+    "directory": "tests-e2e"
   },
   "publishConfig": {
     "access": "public"
@@ -34,6 +34,10 @@
     "@biomejs/biome": "catalog:",
     "rimraf": "catalog:",
     "@types/node": "catalog:",
-    "@playwright/test": "^1.49.1"
+    "@playwright/test": "^1.49.1",
+    "@axe-core/playwright": "^4.10.1",
+    "jose": "^5.9.6",
+    "undici": "^6.21.0",
+    "zod": "^3.24.1"
   }
 }

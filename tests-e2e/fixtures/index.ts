@@ -18,6 +18,7 @@ type Fixtures = {
 
 export const test = base.extend<Fixtures>({
   // Each test gets its own identity so parallel runs do not cross tenants.
+  // biome-ignore lint/correctness/noEmptyPattern: Playwright derives a fixture's dependencies from the destructuring pattern of its first parameter, so an empty object literal is the required way to declare "depends on nothing".
   identity: async ({}, use, testInfo) => {
     const identity = await mintIdentity({
       userId: `${environment.tenant.userId}-${testInfo.workerIndex}-${testInfo.repeatEachIndex}`,

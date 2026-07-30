@@ -8,6 +8,15 @@ dist/
 .tsbuildinfo
 *.tsbuildinfo
 
+# Python (model-image-server, model-vision/server)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
 # Coverage
 coverage/
 *.lcov

@@ -89,7 +89,7 @@ export async function verifyJwt(token: string, options: VerifyJwtOptions): Promi
     throw new SecurityError({ reason: 'jwt.malformed', message: 'signature not base64url' });
   }
 
-  const c = (globalThis as { crypto?: Crypto }).crypto;
+  const c = (globalThis as { crypto?: typeof globalThis.crypto }).crypto;
   if (!c?.subtle) {
     throw new SecurityError({ reason: 'jwt.malformed', message: 'WebCrypto unavailable' });
   }

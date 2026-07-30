@@ -85,7 +85,7 @@ export class VisionClient {
       ...(extra ?? {}),
     };
     const token = typeof this.authToken === 'function' ? await this.authToken() : this.authToken;
-    if (token) headers.authorization = `Bearer ${token}`;
+    if (token) headers['authorization'] = `Bearer ${token}`;
     let res: Response;
     try {
       res = await this.fetchImpl(`${this.baseUrl}${path}`, {

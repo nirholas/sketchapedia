@@ -273,12 +273,6 @@ function internalDeps(pkg) {
   return deps;
 }
 
-function tsReferences(pkg) {
-  const prefix =
-    pkg.scope === 'packages' ? '..' : pkg.scope === 'apps' ? '../../packages' : '../packages';
-  return pkg.deps.map((d) => ({ path: `${prefix}/${d}` }));
-}
-
 function camelIdent(name) {
   return name
     .split(/[-_]/)
@@ -287,6 +281,9 @@ function camelIdent(name) {
 }
 
 function renderPackageJson(pkg) {
+  // Root-scoped workspaces (tests-e2e, infra, benchmarks) live directly at the
+  // repo root, so their published paths must not be prefixed with the scope.
+  const dir = pkg.scope === 'root' ? pkg.name : `${pkg.scope}/${pkg.name}`;
   const base = {
     name: `@sketchapedia/${pkg.name}`,
     version: '0.0.0',
@@ -294,11 +291,11 @@ function renderPackageJson(pkg) {
     type: 'module',
     license: 'Apache-2.0',
     author: 'Sketchapedia contributors',
-    homepage: `https://github.com/nirholas/sketchapedia/tree/main/${pkg.scope}/${pkg.name}`,
+    homepage: `https://github.com/nirholas/sketchapedia/tree/main/${dir}`,
     repository: {
       type: 'git',
       url: 'https://github.com/nirholas/sketchapedia.git',
-      directory: `${pkg.scope}/${pkg.name}`,
+      directory: dir,
     },
     publishConfig: { access: 'public' },
   };
@@ -504,7 +501,7 @@ function renderTsconfigBuild() {
   )}\n`;
 }
 
-function renderViteConfig(pkg) {
+function renderViteConfig() {
   return `import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -755,7 +752,7 @@ function writePackage(pkg) {
     writeAlways(join(pkgDir, 'tsconfig.build.json'), renderTsconfigBuild());
   }
   if (pkg.kind === 'app-vite' || pkg.kind === 'app-docs') {
-    writeAlways(join(pkgDir, 'vite.config.ts'), renderViteConfig(pkg));
+    writeAlways(join(pkgDir, 'vite.config.ts'), renderViteConfig());
     const extras = renderVitePackageExtras(pkg);
     for (const [rel, contents] of Object.entries(extras)) {
       writeIfMissing(join(pkgDir, rel), contents);

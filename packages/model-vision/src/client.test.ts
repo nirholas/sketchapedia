@@ -132,8 +132,7 @@ describe('VisionClient.groundStream', () => {
         const e = new TextEncoder();
         c.enqueue(
           e.encode(
-            `event: started\ndata: {"request_id":"r1"}\n\n` +
-              `event: completed\ndata: ${JSON.stringify({ hitmap: RESP.hitmap, diagnostics: RESP.diagnostics })}\n\n`,
+            `event: started\ndata: {"request_id":"r1"}\n\nevent: completed\ndata: ${JSON.stringify({ hitmap: RESP.hitmap, diagnostics: RESP.diagnostics })}\n\n`,
           ),
         );
         c.close();

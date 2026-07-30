@@ -1,5 +1,14 @@
 # @sketchapedia/model-image-server
 
+> Status: specification only. `pyproject.toml` and the two test modules under
+> `tests/` are in place, but the `src/model_image_server/` package they build,
+> import, and expose as the `model-image-server` console script has not landed
+> yet, and there is no Dockerfile in this directory. Every command below
+> describes the target state and will fail today; `pytest tests/` fails at
+> collection with `ModuleNotFoundError: No module named 'model_image_server'`.
+> The canonical build spec is
+> [`prompts/17-image-model-runtime.md`](../../prompts/17-image-model-runtime.md).
+
 Python inference server that renders Sketchapedia keyframes.
 
 Runs [FLUX.1-dev](https://huggingface.co/black-forest-labs/FLUX.1-dev) with

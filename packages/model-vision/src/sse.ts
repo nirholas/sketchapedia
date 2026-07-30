@@ -36,8 +36,8 @@ export async function* decodeSse(
       const { value, done } = await reader.read();
       if (done) break;
       buf += dec.decode(value, { stream: true });
-      let nl: number;
-      while ((nl = buf.indexOf('\n')) !== -1) {
+      let nl = buf.indexOf('\n');
+      for (; nl !== -1; nl = buf.indexOf('\n')) {
         const raw = buf.slice(0, nl).replace(/\r$/, '');
         buf = buf.slice(nl + 1);
         if (raw === '') {

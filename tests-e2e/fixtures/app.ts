@@ -66,7 +66,6 @@ export class AppHarness {
       async ({ hasPred }) => {
         const h = window.__SKETCHAPEDIA__;
         if (!h) throw new Error('Sketchapedia test harness not present');
-        // biome-ignore lint/complexity/useOptionalChain: predicate is serialized separately
         const pred = hasPred
           ? (window as unknown as { __e2e_pred?: (s: unknown) => boolean }).__e2e_pred
           : undefined;

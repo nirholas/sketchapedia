@@ -1,5 +1,9 @@
 # @sketchapedia/client-core — Scrubbable Media Primitive
 
+> Status: design document. The `src/scrubbable/` module described below has
+> not landed in this package yet; the canonical build spec is
+> [`prompts/12-scrubbable-media.md`](../../prompts/12-scrubbable-media.md).
+
 A scene primitive that binds a **scalar (or vector) state variable** to a
 pre-generated **frame sequence** and renders the matching frame with
 configurable interpolation. It's the building block behind experiences like
@@ -117,9 +121,9 @@ The controller maps a raw state value to a **fractional frame index**:
 - Labeled sequences (`keyedBy: 'label'`) also accept label strings for
   scrubbers with discrete, named positions.
 
-All mapping logic lives in
-[`frame-selection.ts`](./src/scrubbable/frame-selection.ts) as pure functions
-— easy to unit-test without touching the DOM.
+All mapping logic is specified as pure functions in
+[`prompts/12-scrubbable-media.md`](../../prompts/12-scrubbable-media.md), so it
+stays easy to unit-test without touching the DOM.
 
 ## Progressive preloading
 
@@ -158,7 +162,7 @@ offset  size  field
 
 ## Public API
 
-See [`types.ts`](./src/scrubbable/types.ts). Highlights:
+See [`prompts/12-scrubbable-media.md`](../../prompts/12-scrubbable-media.md). Highlights:
 
 ```ts
 interface ScrubbableController {

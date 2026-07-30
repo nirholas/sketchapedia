@@ -1,5 +1,10 @@
 # sketchapedia.js
-[![CDNJS](https://img.shields.io/cdnjs/v/sketchapedia.svg)](https://cdnjs.com/libraries/sketchapedia)
+
+> Vendored legacy prototype. This directory is a renamed, in-tree copy of the
+> [canvid](https://github.com/gka/canvid) library by Gregor Aisch and Moritz
+> Klack, kept as the frame-streaming ancestor of the Sketchapedia SDK. It is
+> **not** published to npm and it is **not** the canonical SDK: the production
+> packages live under [`packages/`](../packages) and [`apps/`](../apps).
 
 **sketchapedia** is a tiny dependency free library for playback of relatively short videos on canvas elements. 
 
@@ -17,16 +22,19 @@
 
 ## Installation
 
-**npm**
+There is no `sketchapedia` package on npm. Clone this repository and load
+`sketchapedia/sketchapedia.js` directly, or copy the single file into your
+project:
 
 ```
-$ npm install --save sketchapedia
+$ git clone https://github.com/nirholas/sketchapedia.git
+$ cp sketchapedia/sketchapedia/sketchapedia.js /path/to/your/project/
 ```
 
-**git clone**
+To install the upstream library this file was derived from instead:
 
 ```
-$ git clone git@github.com:gka/sketchapedia.git
+$ npm install --save canvid
 ```
 
 ## Usage
