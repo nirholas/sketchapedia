@@ -8,8 +8,9 @@
     "baseUrl": ".",
     "paths": {
       "@sketchapedia/client-core": ["../packages/client-core/src/index.ts"],
-      "@sketchapedia/client-react": ["../packages/client-react/src/index.ts"],
-      "@sketchapedia/protocol": ["../packages/protocol/src/index.ts"]
+      "@sketchapedia/protocol": ["../packages/protocol/src/index.ts"],
+      "@sketchapedia/cache-keys": ["../packages/cache-keys/src/index.ts"],
+      "@sketchapedia/client-react": ["../packages/client-react/src/index.ts"]
     }
   },
   "include": ["src/**/*"],

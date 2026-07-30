@@ -267,6 +267,30 @@ function writeAlways(path, contents) {
   return true;
 }
 
+/**
+ * Transitive closure of a package's internal @sketchapedia/* deps.
+ *
+ * `paths` below resolve a workspace dep to its *source* file, which pulls that
+ * source into the consuming project's program. The dep's own imports are then
+ * resolved against the *consumer's* baseUrl, so mapping only the direct deps
+ * leaves the grandchildren unresolvable until someone has run a build and left
+ * a dist/*.d.ts behind. That makes `pnpm typecheck` pass or fail depending on
+ * whether dist/ happens to exist, which is exactly what it must not do.
+ */
+function allDeps(pkg) {
+  const byName = new Map(PACKAGES.map((p) => [p.name, p]));
+  const seen = new Set();
+  const walk = (names) => {
+    for (const name of names) {
+      if (seen.has(name)) continue;
+      seen.add(name);
+      walk(byName.get(name)?.deps ?? []);
+    }
+  };
+  walk(pkg.deps);
+  return [...seen];
+}
+
 function internalDeps(pkg) {
   const deps = {};
   for (const d of pkg.deps) deps[`@sketchapedia/${d}`] = 'workspace:*';
@@ -446,12 +470,13 @@ function renderTsconfig(pkg) {
   // without needing a prior build, which is the acceptance criterion for
   // prompt 01. The "composite: true" setting from the base tsconfig remains so
   // that `tsc --build` still works when tooling prefers the reference graph.
-  if (pkg.deps.length) {
+  const deps = allDeps(pkg);
+  if (deps.length) {
     const prefix =
       pkg.scope === 'packages' ? '..' : pkg.scope === 'apps' ? '../../packages' : '../packages';
     tsconfig.compilerOptions.baseUrl = '.';
     tsconfig.compilerOptions.paths = {};
-    for (const d of pkg.deps) {
+    for (const d of deps) {
       tsconfig.compilerOptions.paths[`@sketchapedia/${d}`] = [`${prefix}/${d}/src/index.ts`];
     }
   }

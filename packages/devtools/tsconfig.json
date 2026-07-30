@@ -7,7 +7,8 @@
     "baseUrl": ".",
     "paths": {
       "@sketchapedia/protocol": ["../protocol/src/index.ts"],
-      "@sketchapedia/client-core": ["../client-core/src/index.ts"]
+      "@sketchapedia/client-core": ["../client-core/src/index.ts"],
+      "@sketchapedia/cache-keys": ["../cache-keys/src/index.ts"]
     }
   },
   "include": ["src/**/*"],
