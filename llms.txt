@@ -1,0 +1,28 @@
+# sketchapedia
+
+> Experimental TypeScript SDK that renders web UIs as AI-generated pixels with an invisible accessible logic layer on top.
+
+sketchapedia is an open-source repository by nirholas, part of the three.ws ecosystem.
+
+## Docs
+
+- [README](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md): install, usage and reference
+- [The vision in one sentence](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#the-vision-in-one-sentence)
+- [Architecture](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#architecture)
+- [Repository layout](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#repository-layout)
+- [Getting started](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#getting-started)
+- [Legacy pre-monorepo sketch](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#legacy-pre-monorepo-sketch)
+- [Contributing](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#contributing)
+- [License](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#license)
+- [Documentation](https://github.com/nirholas/sketchapedia/blob/HEAD/README.md#documentation)
+- [AGENTS.md](https://github.com/nirholas/sketchapedia/blob/HEAD/AGENTS.md): guidance for coding agents
+- [Full text for LLMs](https://github.com/nirholas/sketchapedia/blob/HEAD/llms-full.txt): the README inlined
+
+## Project
+
+- [Source](https://github.com/nirholas/sketchapedia)
+- [Issues](https://github.com/nirholas/sketchapedia/issues)
+- [Discussions](https://github.com/nirholas/sketchapedia/discussions)
+- [Homepage](https://nirholas.github.io/sketchapedia/)
+- [three.ws](https://three.ws): the platform this is part of
+- [All repositories by nirholas](https://github.com/nirholas/nirholas#readme)

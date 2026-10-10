@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+title: "sketchapedia"
+abstract: "Experimental TypeScript SDK that renders web UIs as AI-generated pixels with an invisible accessible logic layer on top."
+repository-code: "https://github.com/nirholas/sketchapedia"
+url: "https://three.ws"
+authors:
+  - name: three.ws
+    website: "https://three.ws"

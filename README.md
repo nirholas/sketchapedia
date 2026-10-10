@@ -1,5 +1,10 @@
 # Sketchapedia
 
+<!-- three.ws:badges -->
+[![GitHub stars](https://img.shields.io/github/stars/nirholas/sketchapedia?style=flat&logo=github)](https://github.com/nirholas/sketchapedia/stargazers) [![Last commit](https://img.shields.io/github/last-commit/nirholas/sketchapedia?style=flat)](https://github.com/nirholas/sketchapedia/commits) [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat)](https://github.com/nirholas/sketchapedia/pulls) [![AI agent friendly](https://img.shields.io/badge/AI%20agents-AGENTS.md%20%2B%20llms.txt-6d5dfc?style=flat)](https://github.com/nirholas/sketchapedia/blob/HEAD/AGENTS.md)
+<!-- /three.ws:badges -->
+
+
 **A hybrid generative–logical SDK for building fluid, non-rectangular, AI-rendered user interfaces on the web.**
 
 Sketchapedia is *Model-as-a-Renderer* (MaaR) — replacing the DOM/CSS/JS rendering pipeline with a generative image/video model that paints the UI as pixels, while a thin invisible DOM overlay preserves input, state, accessibility, and text fidelity.
@@ -97,3 +102,26 @@ Full documentation site: **https://nirholas.github.io/sketchapedia/**
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=nirholas/sketchapedia&type=Date)](https://www.star-history.com/#nirholas/sketchapedia&Date)
+
+<!-- three.ws:growth -->
+## Support the project
+
+If sketchapedia saves you time, **[star it on GitHub](https://github.com/nirholas/sketchapedia)**. Stars are how other developers and AI agents find the repositories worth trusting, and they cost you one click.
+
+Know someone who would use it? [Post on X](https://twitter.com/intent/tweet?text=sketchapedia%3A%20Experimental%20TypeScript%20SDK%20that%20renders%20web%20UIs%20as%20AI-generated%20pixels%20with%20an%20invisible&url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsketchapedia) · [Share on Bluesky](https://bsky.app/intent/compose?text=sketchapedia%3A%20Experimental%20TypeScript%20SDK%20that%20renders%20web%20UIs%20as%20AI-generated%20pixels%20with%20an%20invisible%20https%3A%2F%2Fgithub.com%2Fnirholas%2Fsketchapedia) · [Share on LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsketchapedia) · [Submit to Hacker News](https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsketchapedia&t=sketchapedia%3A%20Experimental%20TypeScript%20SDK%20that%20renders%20web%20UIs%20as%20AI-generated%20pixels%20with%20an%20invisible) · [Share on Reddit](https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnirholas%2Fsketchapedia&title=sketchapedia%3A%20Experimental%20TypeScript%20SDK%20that%20renders%20web%20UIs%20as%20AI-generated%20pixels%20with%20an%20invisible)
+
+## Built for AI agents too
+
+Coding agents and LLM tooling can read this repo directly: [AGENTS.md](./AGENTS.md), [llms.txt](./llms.txt), [llms-full.txt](./llms-full.txt). Point an agent at `https://github.com/nirholas/sketchapedia` and it has the context it needs.
+
+## More from the same author
+
+- [All repositories by nirholas](https://github.com/nirholas/nirholas#readme): the full catalog, grouped by topic
+- [three.ws](https://three.ws): the platform for 3D AI agents with Solana wallets, a skill marketplace and x402 payments
+- Questions or ideas: [open an issue](https://github.com/nirholas/sketchapedia/issues) or [start a discussion](https://github.com/nirholas/sketchapedia/discussions)
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=nirholas/sketchapedia)](https://github.com/nirholas/sketchapedia/graphs/contributors)
+
+<!-- /three.ws:growth -->
