@@ -38,7 +38,7 @@
   "dependencies": {
     "@sketchapedia/protocol": "workspace:*",
     "@anthropic-ai/sdk": "^0.90.0",
-    "zod": "^4.3.6",
+    "zod": "^4.6.6",
     "zod-to-json-schema": "^3.25.2"
   },
   "peerDependencies": {
