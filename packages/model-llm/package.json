@@ -24,7 +24,11 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
@@ -37,7 +41,7 @@
   },
   "dependencies": {
     "@sketchapedia/protocol": "workspace:*",
-    "@anthropic-ai/sdk": "^0.90.0",
+    "@anthropic-ai/sdk": "^0.91.1",
     "zod": "^4.6.6",
     "zod-to-json-schema": "^3.25.2"
   },
