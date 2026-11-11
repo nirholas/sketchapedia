@@ -27,7 +27,7 @@ RUN pip install \
       fastapi==0.115.6 "uvicorn[standard]==0.32.1" sse-starlette==2.1.3 \
       pydantic==2.10.3 pydantic-settings==2.7.0 httpx==0.28.1 \
       pillow==11.0.0 numpy==2.1.3 scipy==1.14.1 rapidfuzz==3.10.1 \
-      structlog==24.4.0 transformers==4.46.3 accelerate==1.1.1 \
+      structlog==24.4.0 transformers==4.46.3 \
       timm==1.0.11 einops==0.8.0 safetensors==0.4.5 \
       opencv-python-headless==4.10.0.84
 
